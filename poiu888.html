@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آلة حاسبة ذكية</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+            font-family: sans-serif;
+        }
+        
+        .calculator {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 320px;
+        }
+        
+        #display {
+            width: 100%;
+            height: 60px;
+            font-size: 2rem;
+            text-align: left;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background: #eee;
+            box-sizing: border-box;
+        }
+        
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        
+        button {
+            height: 60px;
+            border-radius: 10px;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        button:active {
+            transform: scale(0.95);
+        }
+        
+        .num {
+            background-color: #555;
+            color: white;
+        }
+        
+        .op {
+            background-color: #ff9500;
+            color: white;
+        }
+        
+        .clear {
+            background-color: #ff3b30;
+            color: white;
+            grid-column: span 2;
+        }
+        
+        .equal {
+            background-color: #34c759;
+            color: white;
+            grid-column: span 2;
+        }
+        
+        button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="calculator">
+        <input type="text" id="display" disabled>
+        <div class="buttons">
+            <button class="clear" onclick="clearDisplay()">AC</button>
+            <button class="op" onclick="addToDisplay('/')">/</button>
+            <button class="op" onclick="addToDisplay('*')">×</button>
+
+            <button class="num" onclick="addToDisplay('7')">7</button>
+            <button class="num" onclick="addToDisplay('8')">8</button>
+            <button class="num" onclick="addToDisplay('9')">9</button>
+            <button class="op" onclick="addToDisplay('-')">-</button>
+
+            <button class="num" onclick="addToDisplay('4')">4</button>
+            <button class="num" onclick="addToDisplay('5')">5</button>
+            <button class="num" onclick="addToDisplay('6')">6</button>
+            <button class="op" onclick="addToDisplay('+')">+</button>
+
+            <button class="num" onclick="addToDisplay('1')">1</button>
+            <button class="num" onclick="addToDisplay('2')">2</button>
+            <button class="num" onclick="addToDisplay('3')">3</button>
+            <button class="num" onclick="addToDisplay('0')">0</button>
+
+            <button class="equal" onclick="calculate()">=</button>
+            <button class="num" onclick="addToDisplay('.')">.</button>
+        </div>
+    </div>
+
+    <script>
+        let display = document.getElementById('display');
+
+        function addToDisplay(value) {
+            display.value += value;
+        }
+
+        function clearDisplay() {
+            display.value = '';
+        }
+
+        function calculate() {
+            let currentValue = display.value;
+
+            // الكود السري الخاص بك
+            if (currentValue === "2012") {
+                alert("تم تفعيل الكود السري! جاري الانتقال للألعاب...");
+                window.location.href = "https://poki.com"; // موقع ألعاب شهير
+                return;
+            }
+
+            try {
+                // تنفيذ العملية الحسابية بشكل عادي
+                display.value = eval(currentValue);
+            } catch (e) {
+                display.value = "Error";
+                setTimeout(clearDisplay, 1000);
+            }
+        }
+    </script>
+</body>
+
+</html>
